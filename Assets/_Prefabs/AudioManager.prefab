@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2784673439099580266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2784673439099580268}
+  - component: {fileID: 2784673439099580269}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2784673439099580268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2784673439099580266}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2784673439099580269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2784673439099580266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6510934733b6d4ca81a4cd9d2be4fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Theme1
+    clip: {fileID: 8300000, guid: 609ddd3971e161a4c945544fd9d0f720, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 77e4d898a5a96a345876263dc4bdbb27, type: 2}
+    source: {fileID: 0}
+  - name: Theme2
+    clip: {fileID: 8300000, guid: bf9b1ac3735084d468d7debf7da0c0d6, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 77e4d898a5a96a345876263dc4bdbb27, type: 2}
+    source: {fileID: 0}
+  - name: Theme3
+    clip: {fileID: 8300000, guid: c51ae7340bedd324fa5306c4bf8ab27c, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 77e4d898a5a96a345876263dc4bdbb27, type: 2}
+    source: {fileID: 0}
+  - name: Theme4
+    clip: {fileID: 8300000, guid: 0dffcd9b1e834be4597f68fa09b128d9, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 77e4d898a5a96a345876263dc4bdbb27, type: 2}
+    source: {fileID: 0}
+  - name: Theme5
+    clip: {fileID: 8300000, guid: 6c5794685009e1a49a35583737cda34c, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 77e4d898a5a96a345876263dc4bdbb27, type: 2}
+    source: {fileID: 0}
+  - name: Button
+    clip: {fileID: 8300000, guid: 93c25b5417006e6409deacedd945031f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 77e4d898a5a96a345876263dc4bdbb27, type: 2}
+    source: {fileID: 0}
+  - name: LevelCompleted
+    clip: {fileID: 8300000, guid: 06128832965ae8e48a5bf8de7947c2da, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 77e4d898a5a96a345876263dc4bdbb27, type: 2}
+    source: {fileID: 0}
+  - name: CubePlacement
+    clip: {fileID: 8300000, guid: 31664e2fab4a99c41a57a0802d8ea0de, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 77e4d898a5a96a345876263dc4bdbb27, type: 2}
+    source: {fileID: 0}
+  - name: CubeRemove
+    clip: {fileID: 8300000, guid: d358d5b5d45fd304d8baba97c611d666, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    group: {fileID: 24300002, guid: 77e4d898a5a96a345876263dc4bdbb27, type: 2}
+    source: {fileID: 0}
