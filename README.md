@@ -1,2 +1,2 @@
-# ScaleIt-GameOff2023
+# ScaleIt - The game I made for GameOff2023
  
