@@ -11,24 +11,19 @@ public class PlacementSystem : MonoBehaviour
 	[SerializeField] private PreviewSystem previewSystem;
 	[SerializeField] private ControlSystem controlSystem;
 
-    //[SerializeField] private GameObject mouseIndicator;
     [SerializeField] private GameObject cellIndicator;
-	//[SerializeField] private GameObject placeCubeEffect;
-	//[SerializeField] private GameObject removeCubeEffect;
+
     [SerializeField] private InputManager inputManager;
 	[SerializeField] private Grid grid;
 
 	[SerializeField] private CubesDatabaseSO database;
 	private int selectedCubeIndex = -1;
 
-	//private Dictionary<Vector3Int, GameObject> occupiedPositions;
-	//List<Vector3Int> avaliablePositions = new List<Vector3Int>();
 
 	private Vector3Int lastDetectedPosition = Vector3Int.zero;
 
 	private void Start()
 	{
-		//occupiedPositions = new Dictionary<Vector3Int, GameObject>();
 		StopPlacement();
 		StopRemovingCubes();
 	}
@@ -44,7 +39,6 @@ public class PlacementSystem : MonoBehaviour
 			Debug.LogError($"No ID Found {ID}");
 			return;
 		}
-		//cellIndicator.SetActive(true);
 		SetCellIndicator(true, Color.white);
 		previewSystem.StartShowingPlacementPreview(database.cubesData[selectedCubeIndex].CubePrefab, database.cubesData[selectedCubeIndex].Size);
 		inputManager.OnClicked += PlaceStructure;
@@ -99,7 +93,6 @@ public class PlacementSystem : MonoBehaviour
 			{
 				GameObject cubeObject = controlSystem.GetOccupiedPositions()[pos];
 				controlSystem.GetOccupiedPositions().Remove(pos);
-				//Destroy(cubeObject);
 
 				ObjectPoolManager.ReturnObjectToPool(cubeObject);
 
@@ -107,9 +100,6 @@ public class PlacementSystem : MonoBehaviour
 					ObjectPoolManager.PoolType.ParticleSystem);
 
 				StatsManager.Instance.SetNumberOfRemoveCubes();
-
-				/*GameObject removeEffectGO = Instantiate(GameAssets.ins.removeCubeEffect, pos, GameAssets.ins.removeCubeEffect.transform.rotation);
-				Destroy(removeEffectGO, 2f);*/
 			}
 			controlSystem.GetPositionedCubeGroups().Remove(cubeGroupPos);
 		}
@@ -161,57 +151,6 @@ public class PlacementSystem : MonoBehaviour
 		PlaceTheCube(controlSystem.GetAvaliablePositions());
 	}
 
-	/*private bool CheckCellsToPutPosition(Vector3Int position)
-	{
-		List<Vector3Int> cellsToPutPositions = mapGenerator.GetCellsToPutCubes();
-
-		return cellsToPutPositions.Contains(position);
-	}*/
-
-	/*private bool IsCellOccupied(Vector3Int position)
-	{
-		return occupiedPositions.ContainsKey(position);
-	}*/
-
-	/*private bool CanCubeScale(Vector3Int startPosition)
-	{
-		avaliablePositions.Clear();
-
-		CubeData currentCube = database.cubesData[selectedCubeIndex];
-		int i = Math.Sign(currentCube.Size.x) * 1;
-
-		avaliablePositions.Add(startPosition);
-
-		while(Mathf.Abs(i) < Mathf.Abs(currentCube.Size.x))
-		{
-			Vector3Int newPosition = grid.WorldToCell(startPosition + new Vector3Int(i, 0, 0));
-			if (!mapGenerator.GetLevelCells().Contains(newPosition) || IsCellOccupied(newPosition))
-			{
-				avaliablePositions.Clear();
-				return false;
-			}
-
-			avaliablePositions.Add(newPosition);
-			i += Math.Sign(i) * 1;
-		}
-
-		i = Math.Sign(currentCube.Size.y) * 1;
-		while (Mathf.Abs(i) < Mathf.Abs(currentCube.Size.y))
-		{
-			Vector3Int newPosition = grid.WorldToCell(startPosition + new Vector3Int(0, 0, i));
-			if (!mapGenerator.GetLevelCells().Contains(newPosition) || IsCellOccupied(newPosition))
-			{
-				avaliablePositions.Clear();
-				return false;
-			}
-
-			avaliablePositions.Add(newPosition);
-			i += Math.Sign(i) * 1;
-		}
-
-		return true;
-	}*/
-
 	private void PlaceTheCube(List<Vector3Int> cubePositions)
 	{
 		List<Vector3Int> newList = new List<Vector3Int>();
@@ -226,12 +165,9 @@ public class PlacementSystem : MonoBehaviour
 
 		foreach (Vector3Int pos in newList)
 		{
-			//GameObject cubeGameObject = Instantiate(database.cubesData[selectedCubeIndex].CubePrefab);
-
 			GameObject cubeGameObject = ObjectPoolManager.SpawnObject(database.cubesData[selectedCubeIndex].CubePrefab,Vector3.zero,
 				Quaternion.identity,ObjectPoolManager.PoolType.GameObjectSystem);
 
-			//occupiedPositions.Add(pos, cubeGameObject);
 			controlSystem.SetOccupiedPositions(pos, cubeGameObject);
 			cubeGameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = database.cubesData[selectedCubeIndex].CubeColor;
 			cubeGameObject.transform.position = grid.CellToWorld(pos);
@@ -240,9 +176,6 @@ public class PlacementSystem : MonoBehaviour
 				GameAssets.ins.placeCubeEffect.transform.rotation,ObjectPoolManager.PoolType.ParticleSystem);
 
 			StatsManager.Instance.SetNumberOfPlaceCubes();
-
-			/*GameObject placeCubeEffectGO = Instantiate(GameAssets.ins.placeCubeEffect, cubeGameObject.transform);
-			Destroy(placeCubeEffectGO, 2f);*/
 		}
 
 		OnLevelStatusCheck?.Invoke();
@@ -274,7 +207,6 @@ public class PlacementSystem : MonoBehaviour
 			bool checkValidity = controlSystem.CheckCellsToPutPosition(gridPosition);
 			checkValidity = !controlSystem.IsCellOccupied(gridPosition);
 
-			//mouseIndicator.transform.position = mousePosition;
 			cellIndicator.transform.position = grid.CellToWorld(gridPosition);
 
 			previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), checkValidity);
