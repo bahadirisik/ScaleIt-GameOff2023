@@ -21,13 +21,7 @@ public class PreviewSystem : MonoBehaviour
 	{
 		previewobject = Instantiate(prefab);
 		Preparereview(previewobject);
-		//PrepareCursor(size);
 	}
-
-	/*private void PrepareCursor(Vector2Int size)
-	{
-		throw new NotImplementedException();
-	}*/
 
 	private void Preparereview(GameObject previewobject)
 	{
